@@ -57,6 +57,7 @@ def print_guesses(guesses, word):
             else:
                 print(guesses[i][j], end = " ")
         
+        Style.RESET_ALL
         print("")
 
 def input_guess():
