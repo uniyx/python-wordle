@@ -2,6 +2,10 @@
 import sys
 import random
 
+from colorama import Fore, Back, Style, init
+
+init(autoreset=True)
+
 def main():
     print("Welcome to Wordle!\n")
 
@@ -13,24 +17,19 @@ def game(word):
 
     turn = 0
 
-    while True:
-        # Print out guesses
-        for i in range(6):
-            print(" ".join(guesses[i]))
+    print_guesses(guesses, word)
 
+    while True:
         # Get next guess
         guess = input_guess()
-        difference = compare(word, guess)
 
-        guesses[turn] = difference
+        guesses[turn] = guess
+
+        # Print out guesses
+        print_guesses(guesses, word)
 
         # Win condition
-        if difference == list("22222"):
-        
-            # Print out guesses
-            for i in range(6):
-                print(" ".join(guesses[i]))
-            
+        if guess == word:            
             print("\nYou win!")
             break
 
@@ -38,31 +37,27 @@ def game(word):
         
         # Lose condition
         if turn == 6:
-
-            # Print out guesses
-            for i in range(6):
-                print(" ".join(guesses[i]))
-
             print("\nYou lost!")
             print("The word was: " + word)
             break
 
-def compare(word, guess):
-    difference = list("_____")
+def print_guesses(guesses, word):
+    print("")
+    for i in range(6):
 
-    # Check if letters exist
-    for i in range(5):
-        if(guess[i] in word):
-            #print("exist match")
-            difference[i] = "1"
+        for j in range(5):
+            # Check if letters are exact
+            if(guesses[i][j] == word[j]):
+                print(Back.GREEN + Fore.BLACK + guesses[i][j], end = " ")
 
-     # Check if letters are exact
-    for i in range(5):
-        if(word[i] == guess[i]):
-            #print("exact match")
-            difference[i] = "2"
+            # Check if letters exist
+            elif(guesses[i][j] in word):
+                print(Back.YELLOW + Fore.BLACK + guesses[i][j], end = " ")
 
-    return difference
+            else:
+                print(guesses[i][j], end = " ")
+        
+        print("")
 
 def input_guess():
     while True:
@@ -109,9 +104,8 @@ def gen():
         
         word = lines[linenum].strip()
         
-        print(word)
+        #print(word)
         return word
         
-
 if __name__ == '__main__':
     sys.exit(main())
