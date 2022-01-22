@@ -62,7 +62,7 @@ def print_guesses(guesses, word):
 
 def input_guess():
     while True:
-        guess = input("\nEnter your guess:\n")
+        guess = input("\nEnter your guess:\n").lower()
 
         # Check if guess is valid
         if valid(guess):
