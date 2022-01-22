@@ -1,4 +1,4 @@
-![wordle.py logo](https://github.com/uniyx/python-wordle/blob/master/wordlepy.png)
+![wordle.py logo]()
 # wordle.py
 
 Wordle but in python!
