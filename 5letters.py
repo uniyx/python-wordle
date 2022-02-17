@@ -1,5 +1,5 @@
 import sys
-
+#cum
 def main():
     with open('american-english.txt', 'r') as dictionary, open('five.txt', 'w') as five:
         for line in dictionary:
